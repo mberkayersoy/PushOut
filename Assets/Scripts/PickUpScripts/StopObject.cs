@@ -5,7 +5,7 @@ public class StopObject : MonoBehaviour
 {
     Rigidbody rb;
     private string rotationID;
-    private string positionID;
+    //private string positionID;
     public bool isGrounded;
     void Start()
     {
@@ -15,25 +15,24 @@ public class StopObject : MonoBehaviour
         // I gave a unique ID to each dotween objects.
         // In this way, DOTween.Kill does not affect other objects when it runs.
         rotationID = "Rotation" + GetInstanceID().ToString();
-        positionID = "Position" + GetInstanceID().ToString();
+        //positionID = "Position" + GetInstanceID().ToString();
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Ground"))
         {
-            rb.isKinematic = true;
-            gameObject.GetComponent<Collider>().enabled = false;
             isGrounded = true;
+            rb.isKinematic = true;
             RotateObject();
-            MoveObjectYaxis();
-
+            //MoveObjectYaxis();
+            gameObject.GetComponent<Collider>().enabled = false;
         }
     }
 
     void RotateObject()
     {
-        if (transform.parent != null)
+        if (gameObject.transform != null)
         {
             transform.parent.DORotate(new Vector3(0f, 360f, 0f), 2f, RotateMode.LocalAxisAdd)
             .SetEase(Ease.Linear)
@@ -41,20 +40,19 @@ public class StopObject : MonoBehaviour
             .SetId(rotationID);
         }
     }
-    void MoveObjectYaxis()   
-    {
-        if (transform.parent != null)
-        {
-            transform.parent.DOMoveY(transform.parent.position.y + 1f, 1f)
-            .SetEase(Ease.InOutSine)
-            .SetLoops(-1, LoopType.Yoyo);
-        }
-    }
+    //void MoveObjectYaxis()   
+    //{
+    //    if (gameObject.transform != null)
+    //    {
+    //        transform.parent.DOMoveY(transform.parent.position.y + 1f, 1f)
+    //        .SetEase(Ease.InOutSine)
+    //        .SetLoops(-1, LoopType.Yoyo);
+    //    }
+    //}
 
     // This method execute when gameobject will destroy. Prevent the dotween bugs/errors.
     private void OnDestroy()
     {
         DOTween.Kill(rotationID);
-        DOTween.Kill(positionID);
     }
 }

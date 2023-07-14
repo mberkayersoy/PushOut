@@ -1950,7 +1950,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
-  moveSpeed: 13
+  moveSpeed: 14
   rotationSpeed: 360
   pushForce: 30
   isPushed: 0

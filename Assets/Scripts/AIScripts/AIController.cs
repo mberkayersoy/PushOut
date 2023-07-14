@@ -29,7 +29,7 @@ public class AIController : MonoBehaviour
     {
         if (!GameManager.Instance.isGameActive) return;
 
-        FindClosestTarget();
+        //FindBestTarget();
 
         // Don't move until your velocity.magnitude is zero if you have been pushed by someone.
         if (isPushed == true)
@@ -71,7 +71,7 @@ public class AIController : MonoBehaviour
     }
 
     // Find the closest target by looking at the colliders of the objects within the detectionRange.
-    private void FindClosestTarget()
+    private void FindBestTarget()
     {
         Collider[] targetColliders = Physics.OverlapSphere(transform.position, detectionRange);
         float closestDistance = Mathf.Infinity;

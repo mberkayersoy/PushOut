@@ -7,8 +7,8 @@ public class PickUp : MonoBehaviour
     {
         if (other.TryGetComponent(out CharacterFeatures features))
         {
-            Destroy(gameObject);
             features.SetScore(addScore);
+            Destroy(gameObject);
         }
     }
 }
