@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -99,16 +100,39 @@ public class PlayerController : MonoBehaviour
         {
             Vector3 pushDirection = -collision.contacts[0].normal.normalized;
             pushDirection.y = 0;
+            //StartCoroutine(Vibrate()); // Start Vibration
             characterFeatures.SetLastPushedPlayer(enemy);
             PushCharacter(enemy.GetComponent<Rigidbody>(), pushDirection);
             isPushed = true;
             animator.SetBool("isPushed", true);
         }
     }
-
     private void PushCharacter(Rigidbody pushedRigidbody, Vector3 direction)
     {
         pushedRigidbody.AddForce(direction * gameObject.GetComponent<Rigidbody>().mass * pushForce, ForceMode.Impulse);
+    }
+
+    private IEnumerator Vibrate()
+    {
+        // vibration time
+        long milliseconds = 100;
+
+        // Start vibration
+        if (SystemInfo.supportsVibration)
+        {   
+            Debug.Log("vibrating");
+            Handheld.Vibrate();
+        }
+
+        // wait
+        yield return new WaitForSecondsRealtime(milliseconds / 1000f);
+
+        // stop vibration
+        if (SystemInfo.supportsVibration)
+        {
+            Debug.Log("stop");
+            Handheld.StopActivityIndicator();
+        }
     }
 
 }

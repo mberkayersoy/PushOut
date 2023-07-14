@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour
     float remainingTime;
     public bool isGameActive;
     public List<CharacterFeatures> livingCharacters = new List<CharacterFeatures>();
-    public List<string> deadCharacters = new List<string>();
+    public List<CharacterFeatures> deadCharacters = new List<CharacterFeatures>();
 
     [Header("Pause Panel")]
     public GameObject PauseUI;
@@ -94,26 +94,28 @@ public class GameManager : MonoBehaviour
 
     public void UpdateDeadList(CharacterFeatures character)
     {
-        deadCharacters.Add(character.GetName());
+        deadCharacters.Add(character);
         livingCharacters.Remove(character);
     }
 
     public void InstantiateDeadsRow()
     {
         int rowCounter = spawnManager.enemyCount + 1;
-        foreach (string name in deadCharacters)
+        foreach (CharacterFeatures character in deadCharacters)
         {
             GameObject row = Instantiate(leaderboardRowPrefab, leaderboardContent);
-            row.GetComponentInChildren<TextMeshProUGUI>().text = rowCounter.ToString() + "     " + name;
+            row.GetComponentInChildren<TextMeshProUGUI>().text = rowCounter.ToString() + "     " + character.GetName();
 
 
-            if (name.Equals(nameInput.text) || name.Equals("LocalPlayer"))
+            if (character.GetName().Equals(nameInput.text) || character.GetName().Equals("LocalPlayer"))
             {
                 youareText.text = "You're #" + rowCounter.ToString();
+                bestScoreText.text = "BEST SCORE \n" + character.GetScore().ToString();
             }
 
             rowCounter--;
         }
+
     }
 
     public void InstantiateLivingsRow()

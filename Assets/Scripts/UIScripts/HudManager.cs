@@ -14,7 +14,6 @@ public class HudManager : MonoBehaviour
 
     public void ShowScorePopUp(float score)
     {
-
         // If a new popup is created before the popup animation completes, destroy the old pop-up
         if (currentPopUp != null)
         {

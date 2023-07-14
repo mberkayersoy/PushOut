@@ -29,7 +29,7 @@ public class AIController : MonoBehaviour
     {
         if (!GameManager.Instance.isGameActive) return;
 
-        //FindBestTarget();
+        FindBestTarget();
 
         // Don't move until your velocity.magnitude is zero if you have been pushed by someone.
         if (isPushed == true)

@@ -1905,7 +1905,7 @@ MonoBehaviour:
   playerPrefab: {fileID: 6991694744130008205, guid: 637a9678c0a0b2a44b1f4b43a97502f6, type: 3}
   npcPrefab: {fileID: 6991694744130008205, guid: 05605e6938a8c7548833d83055fc4307, type: 3}
   spawnIntervalTime: 0.2
-  enemyCount: 0
+  enemyCount: 11
 --- !u!1 &1103752324
 GameObject:
   m_ObjectHideFlags: 0

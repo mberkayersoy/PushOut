@@ -1948,7 +1948,7 @@ MonoBehaviour:
   moveSpeed: 12
   rotationSpeed: 360
   detectionRange: 45
-  pushForce: 25
+  pushForce: 15
   isPushed: 0
   currentTarget: {fileID: 0}
   animator: {fileID: 0}
