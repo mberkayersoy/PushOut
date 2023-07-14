@@ -175,7 +175,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.09803922}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -517,13 +517,13 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 0, a: 1}
-  m_Intensity: 3
+  m_Intensity: 2
   m_Range: 163.8602
   m_SpotAngle: 75.99666
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -703,6 +703,7 @@ GameObject:
   - component: {fileID: 364899651}
   - component: {fileID: 364899653}
   - component: {fileID: 364899652}
+  - component: {fileID: 364899654}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -827,6 +828,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 364899650}
   m_CullTransparentMesh: 1
+--- !u!114 &364899654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 364899650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90e7cbe379c70a449af42c769138c209, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &366939786
 GameObject:
   m_ObjectHideFlags: 0
@@ -1100,13 +1113,13 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 0.18880486, g: 1, b: 0, a: 1}
-  m_Intensity: 3
+  m_Intensity: 2
   m_Range: 163.8602
   m_SpotAngle: 75.99666
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -1684,7 +1697,7 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 0
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -2124,13 +2137,13 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 0.05361843, g: 0, b: 1, a: 1}
-  m_Intensity: 3
+  m_Intensity: 2
   m_Range: 163.8602
   m_SpotAngle: 75.99666
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -2241,7 +2254,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 30786918d192a55469c0e6f37a3b3161, type: 2}
+  - {fileID: 2100000, guid: cf81efbda79746f439b7c013a2bbb3b6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3292,13 +3305,13 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 0.28793252, b: 0, a: 1}
-  m_Intensity: 3
+  m_Intensity: 2
   m_Range: 163.8602
   m_SpotAngle: 75.99666
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1

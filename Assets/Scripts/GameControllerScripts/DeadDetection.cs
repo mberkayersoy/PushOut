@@ -28,6 +28,7 @@ public class DeadDetection : MonoBehaviour
             gameManager.UpdateDeadList(deadPlayer);
             gameManager.isGameActive = false;
             gameManager.InstantiateDeadsRow();
+            gameManager.InstantiateEmptyRows();
             gameManager.DisplayLeaderBoard();
             return;
 

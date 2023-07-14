@@ -135,6 +135,18 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+
+    public void InstantiateEmptyRows()
+    {
+        int rowCounter = Mathf.Abs(spawnManager.enemyCount + 1 - deadCharacters.Count);
+        foreach (CharacterFeatures character in livingCharacters)
+        {
+            GameObject row = Instantiate(leaderboardRowPrefab, leaderboardContent);
+            row.GetComponentInChildren<TextMeshProUGUI>().text = rowCounter.ToString() + "     -----";
+
+            rowCounter--;
+        }
+    }
     public void DisplayLeaderBoard()
     {
         SetActivePanel(GameEndUI.name);
