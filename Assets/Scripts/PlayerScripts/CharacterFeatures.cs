@@ -11,7 +11,7 @@ public abstract class CharacterFeatures : MonoBehaviour
     // DEFAULT VARIABLES
     protected float totalScore;
     protected float scale; // Scale reference of character
-    protected float scaleMultiplier = 0.001f; // How much does the score variable affect the scale variable.
+    protected float scaleMultiplier = 0.0008f; // How much does the score variable affect the scale variable.
 
     //MOVEMENT VARIABLES
     protected string characterName;
