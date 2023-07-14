@@ -15,6 +15,7 @@ public abstract class CharacterFeatures : MonoBehaviour
     protected string characterName;
     public Vector3 movement;
     public bool isDead;
+    public Transform headTransform;
 
     // GROUND VARIABLES
     protected float groundRadius = 2f;

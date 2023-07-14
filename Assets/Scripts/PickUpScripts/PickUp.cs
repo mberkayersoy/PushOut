@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 
 public class PickUp : MonoBehaviour
@@ -8,6 +9,7 @@ public class PickUp : MonoBehaviour
         if (other.TryGetComponent(out CharacterFeatures features))
         {
             features.SetScore(addScore);
+
             Destroy(gameObject);
         }
     }

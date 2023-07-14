@@ -95,8 +95,8 @@ public class AIController : MonoBehaviour
                     {
                         Rigidbody targetRigidbody = target.GetComponent<Rigidbody>();
 
-                        // If the target's mass + 5 is less than my rb chase the taret.
-                        if (targetRigidbody.mass +  5 < rb.mass && enemy.GroundCheck())
+                        // If the target's mass + 'n' is less than my rb chase the taret.
+                        if (targetRigidbody.mass + 3 < rb.mass && enemy.GroundCheck())
                         {
                             closestDistance = distance;
                             closestTarget = target.transform;

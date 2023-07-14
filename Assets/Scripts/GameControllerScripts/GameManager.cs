@@ -131,7 +131,6 @@ public class GameManager : MonoBehaviour
             if (livingCharacters[i - 1].GetName().Equals(nameInput.text) || livingCharacters[i - 1].GetName().Equals("LocalPlayer"))
             {
                 youareText.text = "You're #" + i.ToString();
-                Debug.Log("LeaderBoardLivings :" + livingCharacters[i - 1].GetScore().ToString());
                 bestScoreText.text = "BEST SCORE \n" + livingCharacters[i - 1].GetScore().ToString();
             }
         }
