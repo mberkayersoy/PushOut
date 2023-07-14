@@ -14,10 +14,11 @@ public class HudManager : MonoBehaviour
 
     public void ShowScorePopUp(float score)
     {
-        // If a new popup is created before the popup animation complete. Destory old pop-up
+        // If a new popup is created before the popup animation completes, destroy the old pop-up
         if (currentPopUp != null)
         {
             Destroy(currentPopUp);
+            currentPopUp = null; // Set currentPopUp to null after destroying it
         }
 
         // Create new pop-up
@@ -26,25 +27,27 @@ public class HudManager : MonoBehaviour
         scoreText.color = SetTextColor(score);
         scoreText.text = "+" + score.ToString();
 
-
         currentPopUpSequence = DOTween.Sequence();
         currentPopUpSequence.Append(scoreText.transform.DOMoveY(scoreText.transform.position.y + moveDistance, popUpDuration)
             .SetEase(Ease.OutQuad)
             .OnStart(() =>
             {
-
-        // Increase the scale value as you go up.
-        scoreText.transform.DOScale(Vector3.one, popUpDuration);
+            // Increase the scale value as you go up.
+            scoreText.transform.DOScale(Vector3.one, popUpDuration);
             }));
         currentPopUpSequence.AppendInterval(popUpDuration);
         currentPopUpSequence.Append(scoreText.transform.DOMoveY(scoreText.transform.position.y - moveDistance, popUpDuration)
             .SetEase(Ease.InQuad)
             .OnStart(() =>
             {
-        // Decrease the scale value as you go down.
-        scoreText.transform.DOScale(Vector3.zero, popUpDuration);
+            // Decrease the scale value as you go down.
+            scoreText.transform.DOScale(Vector3.zero, popUpDuration);
             })
-            .OnComplete(() => Destroy(currentPopUp)));
+            .OnComplete(() =>
+            {
+                Destroy(currentPopUp);
+                currentPopUp = null; // Set currentPopUp to null after destroying it
+        }));
     }
 
     // Set text color based on score value.

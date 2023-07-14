@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -110,7 +108,7 @@ public class PlayerController : MonoBehaviour
 
     private void PushCharacter(Rigidbody pushedRigidbody, Vector3 direction)
     {
-        pushedRigidbody.AddForce(direction * gameObject.GetComponent<Rigidbody>().mass * 20, ForceMode.Impulse);
+        pushedRigidbody.AddForce(direction * gameObject.GetComponent<Rigidbody>().mass * pushForce, ForceMode.Impulse);
     }
 
 }

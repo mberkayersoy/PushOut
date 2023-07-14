@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.AI;
 
 public class AIController : MonoBehaviour
 {
@@ -96,7 +95,7 @@ public class AIController : MonoBehaviour
                     {
                         Rigidbody targetRigidbody = target.GetComponent<Rigidbody>();
 
-                        // If the target's mass is less than or equal to, chase the taret.
+                        // If the target's mass + 5 is less than my rb chase the taret.
                         if (targetRigidbody.mass +  5 < rb.mass && enemy.GroundCheck())
                         {
                             closestDistance = distance;

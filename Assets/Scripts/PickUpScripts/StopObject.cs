@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
@@ -35,16 +33,22 @@ public class StopObject : MonoBehaviour
 
     void RotateObject()
     {
-        transform.parent.DORotate(new Vector3(0f, 360f, 0f), 2f, RotateMode.LocalAxisAdd)
+        if (transform.parent != null)
+        {
+            transform.parent.DORotate(new Vector3(0f, 360f, 0f), 2f, RotateMode.LocalAxisAdd)
             .SetEase(Ease.Linear)
             .SetLoops(-1, LoopType.Restart)
             .SetId(rotationID);
+        }
     }
     void MoveObjectYaxis()   
     {
-        transform.parent.DOMoveY(transform.parent.position.y + 1f, 1f)
+        if (transform.parent != null)
+        {
+            transform.parent.DOMoveY(transform.parent.position.y + 1f, 1f)
             .SetEase(Ease.InOutSine)
             .SetLoops(-1, LoopType.Yoyo);
+        }
     }
 
     // This method execute when gameobject will destroy. Prevent the dotween bugs/errors.

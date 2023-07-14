@@ -1,12 +1,9 @@
-using DG.Tweening;
-
 public class PlayerFeatures : CharacterFeatures
 {
     private HudManager hudManager;
 
     void Start()
     {
-        DOTween.Init();
         hudManager = GetComponent<HudManager>();
         scale = transform.localScale.x;
     }

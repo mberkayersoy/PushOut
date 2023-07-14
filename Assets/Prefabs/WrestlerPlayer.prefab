@@ -1952,7 +1952,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   moveSpeed: 13
   rotationSpeed: 360
-  pushForce: 40
+  pushForce: 30
   isPushed: 0
 --- !u!114 &7659688377438301749
 MonoBehaviour:
