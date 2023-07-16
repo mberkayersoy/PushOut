@@ -104,13 +104,19 @@ public class GameManager : MonoBehaviour
         foreach (CharacterFeatures character in deadCharacters)
         {
             GameObject row = Instantiate(leaderboardRowPrefab, leaderboardContent);
-            row.GetComponentInChildren<TextMeshProUGUI>().text = rowCounter.ToString() + "     " + character.GetName();
+            
 
 
             if (character.GetName().Equals(nameInput.text) || character.GetName().Equals("LocalPlayer"))
             {
                 youareText.text = "You're #" + rowCounter.ToString();
                 bestScoreText.text = "BEST SCORE \n" + character.GetScore().ToString();
+                row.GetComponentInChildren<TextMeshProUGUI>().text = rowCounter.ToString() + "     " + character.GetName();
+                row.GetComponentInChildren<TextMeshProUGUI>().color = Color.red;
+            }
+            else
+            {
+                row.GetComponentInChildren<TextMeshProUGUI>().text = rowCounter.ToString() + "     " + character.GetName();
             }
 
             rowCounter--;
@@ -126,12 +132,18 @@ public class GameManager : MonoBehaviour
         for (int i = aliveCharacter; i > 0; i--)
         {
             GameObject row = Instantiate(leaderboardRowPrefab, leaderboardContent);
-            row.GetComponentInChildren<TextMeshProUGUI>().text = i.ToString() + "     " + livingCharacters[i - 1].GetName();
+           
 
             if (livingCharacters[i - 1].GetName().Equals(nameInput.text) || livingCharacters[i - 1].GetName().Equals("LocalPlayer"))
             {
                 youareText.text = "You're #" + i.ToString();
                 bestScoreText.text = "BEST SCORE \n" + livingCharacters[i - 1].GetScore().ToString();
+                row.GetComponentInChildren<TextMeshProUGUI>().text = i.ToString() + "     " + livingCharacters[i - 1].GetName();
+                row.GetComponentInChildren<TextMeshProUGUI>().color = Color.red;
+            }
+            else
+            {
+                row.GetComponentInChildren<TextMeshProUGUI>().text = i.ToString() + "     " + livingCharacters[i - 1].GetName();
             }
         }
     }

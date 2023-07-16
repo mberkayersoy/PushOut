@@ -68,6 +68,7 @@ public class PlayerController : MonoBehaviour
         {
             dragDirection = Vector2.zero;
         }
+
     }
 
     void FixedUpdate()

@@ -5,9 +5,15 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
     public Collider spawnArea; // The area where objects will be instantiated.
+
+
     public GameObject pickupObject;
+    private List<GameObject> pickupPool = new List<GameObject>();
+    public int initialPoolSize = 100;
+
     public GameObject playerPrefab;
     public GameObject npcPrefab;
+
     public float spawnIntervalTime = 0.2f; // PickUp Spawn Time
     public int enemyCount = 11; // Total Enemy Count
 
@@ -41,8 +47,53 @@ public class SpawnManager : MonoBehaviour
     {
         spawnArea = GetComponent<Collider>();
         gameManager = GameManager.Instance;
+        InitializePool();
         StartCoroutine(SpawnPickups());
         SpawnCharacters();
+    }
+
+    private void InitializePool()
+    {
+        for (int i = 0; i < initialPoolSize; i++)
+        {
+            GameObject pickup = Instantiate(pickupObject, transform.position, Quaternion.identity);
+            pickup.SetActive(false);
+            pickupPool.Add(pickup);
+        }
+    }
+
+    // Instantiate the object continuously at certain intervals.
+    IEnumerator SpawnPickups()
+    {
+        yield return new WaitForSeconds(spawnIntervalTime);
+
+        // Get an inactive pick-up object from the pool using it.
+        GameObject pickup = GetInactivePickup();
+
+        if (pickup != null)
+        {
+            pickup.transform.position = GetRandomPoint();
+            pickup.SetActive(true);
+        }
+
+        StartCoroutine(SpawnPickups());
+    }
+
+    private GameObject GetInactivePickup()
+    {
+        foreach (GameObject pickup in pickupPool)
+        {
+            if (!pickup.activeInHierarchy)
+            {
+                return pickup;
+            }
+        }
+
+        // If no inactive pick-up object is found, a new object is created and added to the pool.
+        GameObject newPickup = Instantiate(pickupObject, transform.position, Quaternion.identity);
+        newPickup.SetActive(false);
+        pickupPool.Add(newPickup);
+        return newPickup;
     }
 
     // Spawn Player and NPC's.
@@ -62,13 +113,7 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
-    // Instantiate the object continuously at certain intervals.
-    IEnumerator SpawnPickups()
-    {
-        yield return new WaitForSeconds(spawnIntervalTime);
-        Instantiate(pickupObject, GetRandomPoint(), Quaternion.identity);
-        StartCoroutine(SpawnPickups());
-    }
+   
 
     //When the game starts, creates a Vector3 List with a minDistance
     //condition to prevent all players from Instantiate too close to each other.
