@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
     [Header("Menu Panel")]
     public GameObject MenuUI;
     public TMP_InputField nameInput;
+    private const string playerNameKey = "PlayerName";
     public Button startButton;
     public Button quitButton;
 
@@ -75,7 +76,7 @@ public class GameManager : MonoBehaviour
         menuButton.onClick.AddListener(RestarScene);
         restartButton.onClick.AddListener(RestarScene);
         DOTween.SetTweensCapacity(500, 500);
-
+        LoadPlayerName();
         leaderBoardRows = leaderboardContent.GetComponentsInChildren<TextMeshProUGUI>();
     }
 
@@ -259,5 +260,20 @@ public class GameManager : MonoBehaviour
         GameUI.SetActive(activePanel.Equals(GameUI.name));
         GameEndUI.SetActive(activePanel.Equals(GameEndUI.name));
         PauseUI.SetActive(activePanel.Equals(PauseUI.name));
+    }
+
+    public void SavePlayerName()
+    {
+        string playerName = nameInput.text;
+        PlayerPrefs.SetString(playerNameKey, playerName);
+    }
+
+    private void LoadPlayerName()
+    {
+        if (PlayerPrefs.HasKey(playerNameKey))
+        {
+            string playerName = PlayerPrefs.GetString(playerNameKey);
+            nameInput.text = playerName;
+        }
     }
 }

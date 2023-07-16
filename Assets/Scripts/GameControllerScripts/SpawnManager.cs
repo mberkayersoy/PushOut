@@ -103,6 +103,7 @@ public class SpawnManager : MonoBehaviour
         GameObject player = Instantiate(playerPrefab, spawnPoints[0], Quaternion.identity);
         gameManager.livingCharacters.Add(player.GetComponent<CharacterFeatures>());
         player.GetComponent<CharacterFeatures>().SetName(gameManager.nameInput.text);
+        gameManager.SavePlayerName();
         Camera.main.GetComponent<CameraFollow>().target = player.transform;
 
         for (int i = 0; i < enemyCount; i++)
