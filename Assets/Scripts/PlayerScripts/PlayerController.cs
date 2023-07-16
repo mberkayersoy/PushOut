@@ -97,8 +97,10 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+
         if (collision.gameObject.TryGetComponent(out CharacterFeatures enemy))
         {
+
             Vector3 pushDirection = -collision.contacts[0].normal.normalized;
             pushDirection.y = 0;
             //StartCoroutine(Vibrate()); // Start Vibration
@@ -106,6 +108,7 @@ public class PlayerController : MonoBehaviour
             PushCharacter(enemy.GetComponent<Rigidbody>(), pushDirection);
             isPushed = true;
             animator.SetBool("isPushed", true);
+            
         }
     }
     private void PushCharacter(Rigidbody pushedRigidbody, Vector3 direction)

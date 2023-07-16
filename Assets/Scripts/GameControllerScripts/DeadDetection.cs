@@ -16,7 +16,7 @@ public class DeadDetection : MonoBehaviour
             deadAI.GetComponent<Collider>().isTrigger = true;
             deadAI.GetComponent<Rigidbody>().isKinematic = true;
             deadAI.SetScoreLastPushedPlayer();
-            gameManager.UpdateDeadList(deadAI);
+            gameManager.UpdateLeaderBoard(deadAI);
 
         }
         // If player is dead.
@@ -25,10 +25,8 @@ public class DeadDetection : MonoBehaviour
             deadPlayer.SetScoreLastPushedPlayer();
             deadPlayer.GetComponent<Animator>().SetTrigger("Dead");
 
-            gameManager.UpdateDeadList(deadPlayer);
+            gameManager.UpdateLeaderBoard(deadPlayer);
             gameManager.isGameActive = false;
-            gameManager.InstantiateDeadsRow();
-            gameManager.InstantiateEmptyRows();
             gameManager.DisplayLeaderBoard();
             return;
 
@@ -36,9 +34,8 @@ public class DeadDetection : MonoBehaviour
         if (gameManager.deadCharacters.Count == gameManager.spawnManager.enemyCount)
         {
             gameManager.isGameActive = false;
-            gameManager.InstantiateDeadsRow();
-            gameManager.InstantiateLivingsRow();
             gameManager.DisplayLeaderBoard();
+
         } 
     }    
 }

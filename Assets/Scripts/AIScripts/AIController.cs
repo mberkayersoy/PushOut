@@ -111,10 +111,13 @@ public class AIController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+
         if (collision.gameObject.TryGetComponent(out CharacterFeatures enemy))
         {
+
             Vector3 pushDirection = -collision.contacts[0].normal.normalized;
             pushDirection.y = 0;
+            //StartCoroutine(Vibrate()); // Start Vibration
             characterFeatures.SetLastPushedPlayer(enemy);
             PushCharacter(enemy.GetComponent<Rigidbody>(), pushDirection);
             isPushed = true;

@@ -62,6 +62,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI youareText;
     public TextMeshProUGUI bestScoreText;
     public Button restartButton;
+    public TextMeshProUGUI[] leaderBoardRows; 
 
     private void Start()
     {
@@ -73,6 +74,9 @@ public class GameManager : MonoBehaviour
         continueButton.onClick.AddListener(OnClickPauseButton);
         menuButton.onClick.AddListener(RestarScene);
         restartButton.onClick.AddListener(RestarScene);
+        DOTween.SetTweensCapacity(500, 500);
+
+        leaderBoardRows = leaderboardContent.GetComponentsInChildren<TextMeshProUGUI>();
     }
 
     private void Update()
@@ -85,84 +89,75 @@ public class GameManager : MonoBehaviour
             if (remainingTime <= 0)
             {
                 isGameActive = false;
-                InstantiateDeadsRow();
-                InstantiateLivingsRow();
                 DisplayLeaderBoard();
             }
         }
     }
 
-    public void UpdateDeadList(CharacterFeatures character)
+    // Update lists when a character dies.
+    public void UpdateLeaderBoard(CharacterFeatures character)
     {
         deadCharacters.Add(character);
         livingCharacters.Remove(character);
     }
 
-    public void InstantiateDeadsRow()
-    {
-        int rowCounter = spawnManager.enemyCount + 1;
-        foreach (CharacterFeatures character in deadCharacters)
-        {
-            GameObject row = Instantiate(leaderboardRowPrefab, leaderboardContent);
-            
-
-
-            if (character.GetName().Equals(nameInput.text) || character.GetName().Equals("LocalPlayer"))
-            {
-                youareText.text = "You're #" + rowCounter.ToString();
-                bestScoreText.text = "BEST SCORE \n" + character.GetScore().ToString();
-                row.GetComponentInChildren<TextMeshProUGUI>().text = rowCounter.ToString() + "     " + character.GetName();
-                row.GetComponentInChildren<TextMeshProUGUI>().color = Color.red;
-            }
-            else
-            {
-                row.GetComponentInChildren<TextMeshProUGUI>().text = rowCounter.ToString() + "     " + character.GetName();
-            }
-
-            rowCounter--;
-        }
-
-    }
-
-    public void InstantiateLivingsRow()
-    {
-        int aliveCharacter = (spawnManager.enemyCount + 1) - deadCharacters.Count;
-        livingCharacters.Sort((x, y) => y.GetScore().CompareTo(x.GetScore()));
-
-        for (int i = aliveCharacter; i > 0; i--)
-        {
-            GameObject row = Instantiate(leaderboardRowPrefab, leaderboardContent);
-           
-
-            if (livingCharacters[i - 1].GetName().Equals(nameInput.text) || livingCharacters[i - 1].GetName().Equals("LocalPlayer"))
-            {
-                youareText.text = "You're #" + i.ToString();
-                bestScoreText.text = "BEST SCORE \n" + livingCharacters[i - 1].GetScore().ToString();
-                row.GetComponentInChildren<TextMeshProUGUI>().text = i.ToString() + "     " + livingCharacters[i - 1].GetName();
-                row.GetComponentInChildren<TextMeshProUGUI>().color = Color.red;
-            }
-            else
-            {
-                row.GetComponentInChildren<TextMeshProUGUI>().text = i.ToString() + "     " + livingCharacters[i - 1].GetName();
-            }
-        }
-    }
-
-    public void InstantiateEmptyRows()
-    {
-        int rowCounter = Mathf.Abs(spawnManager.enemyCount + 1 - deadCharacters.Count);
-        foreach (CharacterFeatures character in livingCharacters)
-        {
-            GameObject row = Instantiate(leaderboardRowPrefab, leaderboardContent);
-            row.GetComponentInChildren<TextMeshProUGUI>().text = rowCounter.ToString() + "     -----";
-
-            rowCounter--;
-        }
-    }
+    // Show the leader board when the game is over.
     public void DisplayLeaderBoard()
     {
+        int totalRows = leaderBoardRows.Length;
+        int numLivingCharacters = livingCharacters.Count;
+        int numDeadCharacters = deadCharacters.Count;
+
+        for (int i = 0; i < totalRows; i++)
+        {
+            // First, set the dead characters.
+            if (i < numDeadCharacters)
+            {
+                CharacterFeatures deadCharacter = deadCharacters[i];
+                leaderBoardRows[i].text = GetRowText(totalRows - i, deadCharacter.GetName());
+                if (CheckIsPlayer(deadCharacter))
+                {
+                    SetPlayerInfo(i, deadCharacter);
+                }
+            }
+            // Second, set the living characters.
+            else if (i >= numDeadCharacters && i < numDeadCharacters + numLivingCharacters)
+            {
+                CharacterFeatures livingCharacter = livingCharacters[i - numDeadCharacters];
+                leaderBoardRows[i].text = GetRowText(totalRows - i, livingCharacter.GetName());
+                if (CheckIsPlayer(livingCharacter))
+                {
+                    SetPlayerInfo(i, livingCharacter);
+                }
+                else
+                {
+                    leaderBoardRows[i].text = GetRowText(totalRows - i, "-----");
+                }
+            }
+        }
+
         SetActivePanel(GameEndUI.name);
         GameEndUI.GetComponent<RectTransform>().DOAnchorPosY(0, 0.75f).SetEase(Ease.OutBounce);
+    }
+
+    private string GetRowText(int position, string playerName)
+    {
+        return position.ToString() + "     " + playerName;
+    }
+
+    // Check if the deceased character is a player.
+    private bool CheckIsPlayer(CharacterFeatures character)
+    {
+        string currentPlayerName = nameInput.text;
+        return character.GetName().Equals(currentPlayerName) || character.GetName().Equals("LocalPlayer");
+    }
+
+    // Set the player's ranking and score.
+    private void SetPlayerInfo(int position, CharacterFeatures character)
+    {
+        leaderBoardRows[position].color = Color.red;
+        youareText.text = "You're #" + (leaderBoardRows.Length - position).ToString();
+        bestScoreText.text = "BEST SCORE \n" + character.GetScore().ToString();
     }
     public void OnClickStartButton()
     {
