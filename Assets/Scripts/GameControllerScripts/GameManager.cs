@@ -109,6 +109,14 @@ public class GameManager : MonoBehaviour
         int numLivingCharacters = livingCharacters.Count;
         int numDeadCharacters = deadCharacters.Count;
 
+        // More than one character can survive as the time runs out.
+        //So when sorting the characters, put them in order according to the score value.
+        if (numLivingCharacters >= 2)
+        {
+            livingCharacters.Sort((x, y) => y.GetScore().CompareTo(x.GetScore()));
+            livingCharacters.Reverse();
+        }
+
         for (int i = 0; i < totalRows; i++)
         {
             // First, set the dead characters.
@@ -130,10 +138,14 @@ public class GameManager : MonoBehaviour
                 {
                     SetPlayerInfo(i, livingCharacter);
                 }
-                else
-                {
-                    leaderBoardRows[i].text = GetRowText(totalRows - i, "-----");
-                }
+                //else
+                //{
+                //    leaderBoardRows[i].text = GetRowText(totalRows - i, "-----");
+                //}
+            }
+            else
+            {
+                leaderBoardRows[i].text = GetRowText(totalRows - i, "-----");
             }
         }
 

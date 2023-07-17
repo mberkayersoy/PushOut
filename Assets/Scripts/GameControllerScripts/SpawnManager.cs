@@ -65,8 +65,8 @@ public class SpawnManager : MonoBehaviour
     // Instantiate the object continuously at certain intervals.
     IEnumerator SpawnPickups()
     {
-        yield return new WaitForSeconds(spawnIntervalTime);
 
+        yield return new WaitForSeconds(spawnIntervalTime);
         // Get an inactive pick-up object from the pool using it.
         GameObject pickup = GetInactivePickup();
 

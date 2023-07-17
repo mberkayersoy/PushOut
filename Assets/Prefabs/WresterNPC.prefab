@@ -1948,7 +1948,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 12
   rotationSpeed: 360
-  detectionRange: 45
+  detectionRange: 55
   pushForce: 15
   isPushed: 0
   currentTarget: {fileID: 0}

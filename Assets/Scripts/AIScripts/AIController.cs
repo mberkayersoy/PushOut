@@ -4,10 +4,9 @@ public class AIController : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 12f;
     [SerializeField] private float rotationSpeed = 360f;
-    [SerializeField] private float detectionRange = 45f;
+    [SerializeField] private float detectionRange = 55f;
     [SerializeField] private float pushForce = 20f;
     [SerializeField] private bool isPushed;
-
 
     EnemyFeatures characterFeatures;
     public Transform currentTarget;

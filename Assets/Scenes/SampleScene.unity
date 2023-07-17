@@ -2519,7 +2519,7 @@ MonoBehaviour:
   initialPoolSize: 25
   playerPrefab: {fileID: 6991694744130008205, guid: 637a9678c0a0b2a44b1f4b43a97502f6, type: 3}
   npcPrefab: {fileID: 6991694744130008205, guid: 05605e6938a8c7548833d83055fc4307, type: 3}
-  spawnIntervalTime: 0.2
+  spawnIntervalTime: 0.3
   enemyCount: 11
 --- !u!1 &1095490756
 GameObject:
@@ -5715,7 +5715,7 @@ MonoBehaviour:
   scoreText: {fileID: 1318800237}
   remainingTimeText: {fileID: 1502762900}
   spawnManager: {fileID: 1026104676}
-  gameTime: 75
+  gameTime: 30
   isGameActive: 0
   livingCharacters: []
   deadCharacters: []
