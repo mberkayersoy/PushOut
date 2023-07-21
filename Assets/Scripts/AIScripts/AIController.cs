@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class AIController : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed = 12f;
+    [SerializeField] private float moveSpeed = 14f;
     [SerializeField] private float rotationSpeed = 360f;
-    [SerializeField] private float detectionRange = 55f;
+    [SerializeField] private float detectionRange = 45f;
     [SerializeField] private float pushForce = 20f;
     [SerializeField] private bool isPushed;
 
@@ -129,10 +129,10 @@ public class AIController : MonoBehaviour
         pushedRigidbody.AddForce(direction * gameObject.GetComponent<Rigidbody>().mass * pushForce, ForceMode.Impulse);
     }
 
-    //private void OnDrawGizmos()
-    //{
-    //    Gizmos.color = new Color(0f, 1f, 0f, 0.5f);
-    //    Gizmos.DrawWireSphere(transform.position, pickupDetectionRange);
-    //    if (currentTarget != null) Gizmos.DrawLine(transform.position, currentTarget.position);
-    //}
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = new Color(0f, 1f, 0f, 0.5f);
+        Gizmos.DrawWireSphere(transform.position, detectionRange);
+        if (currentTarget != null) Gizmos.DrawLine(transform.position, currentTarget.position);
+    }
 }

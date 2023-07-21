@@ -73,8 +73,8 @@ public class GameManager : MonoBehaviour
         startButton.onClick.AddListener(OnClickStartButton);
         pauseButton.onClick.AddListener(OnClickPauseButton);
         continueButton.onClick.AddListener(OnClickPauseButton);
-        menuButton.onClick.AddListener(RestarScene);
-        restartButton.onClick.AddListener(RestarScene);
+        menuButton.onClick.AddListener(RestartScene);
+        restartButton.onClick.AddListener(RestartScene);
         DOTween.SetTweensCapacity(500, 500);
         LoadPlayerName();
         leaderBoardRows = leaderboardContent.GetComponentsInChildren<TextMeshProUGUI>();
@@ -137,11 +137,15 @@ public class GameManager : MonoBehaviour
                 if (CheckIsPlayer(livingCharacter))
                 {
                     SetPlayerInfo(i, livingCharacter);
+                    if (leaderBoardRows.Length - i == 1)
+                    {
+                        livingCharacter.GetComponent<Animator>().SetTrigger("Victory");
+                    }
                 }
-                //else
-                //{
-                //    leaderBoardRows[i].text = GetRowText(totalRows - i, "-----");
-                //}
+                else
+                {
+                    leaderBoardRows[i].text = GetRowText(totalRows - i, "-----");
+                }
             }
             else
             {
@@ -202,7 +206,7 @@ public class GameManager : MonoBehaviour
     }
 
     
-    public void RestarScene()
+    public void RestartScene()
     {
         // Since the menu button and the restart button use the same function, we control it with a small condition.
         if (isGameActive) 

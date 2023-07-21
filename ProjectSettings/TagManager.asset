@@ -14,7 +14,7 @@ TagManager:
   - Ground
   - Water
   - UI
-  - 
+  - UIPlayer
   - 
   - 
   - 
@@ -41,6 +41,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: UIPlayer
+    uniqueID: 3618472033
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

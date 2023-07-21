@@ -5,9 +5,10 @@ public class PlayerController : MonoBehaviour
 {
     private Rigidbody rb;
     public Animator animator;
+    public GameObject hitVFX;
     PlayerFeatures characterFeatures;
 
-    [SerializeField] private float moveSpeed = 14f;
+    [SerializeField] private float moveSpeed = 15f;
     [SerializeField] private float rotationSpeed = 360f;
     [SerializeField] private float pushForce = 25f;
     public bool isPushed;
@@ -100,7 +101,6 @@ public class PlayerController : MonoBehaviour
 
         if (collision.gameObject.TryGetComponent(out CharacterFeatures enemy))
         {
-
             Vector3 pushDirection = -collision.contacts[0].normal.normalized;
             pushDirection.y = 0;
             //StartCoroutine(Vibrate()); // Start Vibration
@@ -108,12 +108,14 @@ public class PlayerController : MonoBehaviour
             PushCharacter(enemy.GetComponent<Rigidbody>(), pushDirection);
             isPushed = true;
             animator.SetBool("isPushed", true);
-            
+            GameObject vfx = Instantiate(hitVFX, collision.contacts[0].point, Quaternion.identity);
+            //Destroy(vfx, 1f);
         }
     }
     private void PushCharacter(Rigidbody pushedRigidbody, Vector3 direction)
     {
         pushedRigidbody.AddForce(direction * gameObject.GetComponent<Rigidbody>().mass * pushForce, ForceMode.Impulse);
+
     }
 
     private IEnumerator Vibrate()
