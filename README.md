@@ -8,14 +8,14 @@ This game is a drag to play game. Determine your name before starting the game. 
 
 ## Screenshots
 
-![Menu](https://github.com/mberkayersoy/PushOut/assets/76611569/15809ccf-9fe7-4c76-9626-f800296f1d72)
-![coundown](https://github.com/mberkayersoy/PushOut/assets/76611569/a0cf7116-7f4b-4e8d-828f-bced34f1700b)
-![go](https://github.com/mberkayersoy/PushOut/assets/76611569/2baed760-0e13-439b-b2dc-e7f8aac5797c)
-![duringGame2](https://github.com/mberkayersoy/PushOut/assets/76611569/a5f0cd3e-4eed-460b-9984-1eb0c218bdf4)
-![paused](https://github.com/mberkayersoy/PushOut/assets/76611569/d27d4ca1-16c9-45e0-b5a0-3ffc69bca199)
-![image_007_0010](https://github.com/mberkayersoy/PushOut/assets/76611569/a6a7977c-932f-4609-873b-b25ca49f296c)
-![leaderboard1](https://github.com/mberkayersoy/PushOut/assets/76611569/6193f9f5-7611-4097-a10e-dac98e8ab661)
-
-
+![image_009_0042](https://github.com/mberkayersoy/PushOut/assets/76611569/bcd5838e-22ca-4dfe-84a7-3468be1364b1)
+![image_010_0175](https://github.com/mberkayersoy/PushOut/assets/76611569/dde04361-8588-4e5c-9afc-fedc144e7a01)
+![image_016_0000](https://github.com/mberkayersoy/PushOut/assets/76611569/7d8e1481-fc66-4de2-87f1-8553916113b6)
+![image_010_0175](https://github.com/mberkayersoy/PushOut/assets/76611569/7730c85e-0e27-43c1-98f0-e4987aa5f689)
+![image_012_0000](https://github.com/mberkayersoy/PushOut/assets/76611569/d2db7700-4f6c-4ef6-87de-41a4df7317ca)
+![image_014_0000](https://github.com/mberkayersoy/PushOut/assets/76611569/fc72bae2-71da-480c-b1ee-c06bd2b87922)
+![image_020_0000](https://github.com/mberkayersoy/PushOut/assets/76611569/94c0ea12-584e-4823-ab93-3e398a21f44c)
+![image_022_0000](https://github.com/mberkayersoy/PushOut/assets/76611569/c6f574f8-c8c5-4d13-bbea-40aa69c2a3fe)
+![image_023_0000](https://github.com/mberkayersoy/PushOut/assets/76611569/1fed83c4-14f9-45cf-acd9-04409e7e9ca9)
 
 
