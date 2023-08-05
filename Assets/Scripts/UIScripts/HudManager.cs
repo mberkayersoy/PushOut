@@ -28,37 +28,55 @@ public class HudManager : MonoBehaviour
         scoreText.color = SetTextColor(score);
         scoreText.text = "+" + score.ToString();
 
-        if (scoreText.transform == null) return;
+        if (scoreText.transform == null)
+        {
+            DestroyCurrentPopUp();
+            return;
+        }
 
         currentPopUpSequence = DOTween.Sequence();
         currentPopUpSequence.Append(scoreText.transform.DOMoveY(scoreText.transform.position.y + moveDistance, popUpDuration)
             .SetEase(Ease.OutQuad)
             .OnStart(() =>
             {
-                if (scoreText.transform == null) return;
-                // Increase the scale value as you go up.
-                scoreText.transform.DOScale(Vector3.one, popUpDuration);
+                if (scoreText.transform == null)
+                {
+                    DestroyCurrentPopUp();
+                    return;
+                }
             }));
 
-
-        if (scoreText.transform == null) return;
-
         currentPopUpSequence.AppendInterval(popUpDuration);
+
         currentPopUpSequence.Append(scoreText.transform.DOMoveY(scoreText.transform.position.y - moveDistance, popUpDuration)
             .SetEase(Ease.InQuad)
             .OnStart(() =>
             {
-                if (scoreText.transform == null) return;
-                // Decrease the scale value as you go down.
-                scoreText.transform.DOScale(Vector3.zero, popUpDuration);
+                if (scoreText.transform == null)
+                {
+                    DestroyCurrentPopUp();
+                    return;
+                }
             })
             .OnComplete(() =>
             {
-                if (scoreText.transform == null) return;
-                currentPopUpSequence.Kill();
-                Destroy(currentPopUp);
-                currentPopUp = null; // Set currentPopUp to null after destroying it
+                if (scoreText.transform == null)
+                {
+                    DestroyCurrentPopUp();
+                    return;
+                }
+                DestroyCurrentPopUp();
             }));
+    }
+
+    private void DestroyCurrentPopUp()
+    {
+        if (currentPopUp != null)
+        {
+            currentPopUpSequence.Kill();
+            Destroy(currentPopUp);
+            currentPopUp = null;
+        }
     }
 
     // Set text color based on score value.
@@ -75,6 +93,6 @@ public class HudManager : MonoBehaviour
         else
         {
             return Color.red;
-        };
+        }
     }
 }

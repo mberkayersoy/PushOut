@@ -61,6 +61,7 @@ public class StopObject : MonoBehaviour
 
     private void OnEnable()
     {
+        DOTween.Kill(rotationID);
         isGrounded = false;
         rb.isKinematic = false;
         RotateObject();

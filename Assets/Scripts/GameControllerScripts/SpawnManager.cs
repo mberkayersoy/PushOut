@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class SpawnManager : MonoBehaviour
 {
@@ -100,6 +101,7 @@ public class SpawnManager : MonoBehaviour
     public void SpawnCharacters()
     {
         List<Vector3> spawnPoints = GetSpawnPoints(enemyCount + 1, 15f);
+
         GameObject player = Instantiate(playerPrefab, spawnPoints[0], Quaternion.identity);
         gameManager.livingCharacters.Add(player.GetComponent<CharacterFeatures>());
         player.GetComponent<CharacterFeatures>().SetName(gameManager.nameInput.text);
@@ -173,7 +175,7 @@ public class SpawnManager : MonoBehaviour
             Debug.LogWarning("Collider reference is missing!");
         }
 
-        return randomPoint;
+        return randomPoint + new Vector3(0, 10, 0);
     }
 
 

@@ -13,8 +13,9 @@ public class DeadDetection : MonoBehaviour
         if (collision.gameObject.TryGetComponent(out EnemyFeatures deadAI))
         {
             deadAI.GetComponent<Animator>().SetTrigger("Dead");
-            deadAI.GetComponent<Collider>().isTrigger = true;
+            deadAI.GetComponent<Collider>().enabled = false;
             deadAI.GetComponent<Rigidbody>().isKinematic = true;
+            deadAI.GetComponent<CharacterFeatures>().isDead = true;
             deadAI.SetScoreLastPushedPlayer();
             gameManager.UpdateLeaderBoard(deadAI);
 
@@ -26,6 +27,7 @@ public class DeadDetection : MonoBehaviour
             deadPlayer.GetComponent<Animator>().SetTrigger("Dead");
 
             gameManager.UpdateLeaderBoard(deadPlayer);
+            deadPlayer.GetComponent<CharacterFeatures>().isDead = true;
             gameManager.isGameActive = false;
             gameManager.DisplayLeaderBoard();
             return;
