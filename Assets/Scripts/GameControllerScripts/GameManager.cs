@@ -24,9 +24,16 @@ public class GameManager : MonoBehaviour
     [Header("Menu Panel")]
     public GameObject MenuUI;
     public TMP_InputField nameInput;
-    private const string playerNameKey = "PlayerName";
+    public TextMeshProUGUI moneyText;
+    public int totalMoney = 0;
     public Button startButton;
     public Button quitButton;
+    public Button marketButton;
+    private const string playerNameKey = "PlayerName";
+    private const string playerMoneyKey = "Money";
+
+    [Header("Market Panel")]
+    public GameObject MarketUI;
 
     [Space(5)]
 
@@ -63,8 +70,13 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI youareText;
     public TextMeshProUGUI bestScoreText;
     public Button restartButton;
-    public TextMeshProUGUI[] leaderBoardRows; 
+    public TextMeshProUGUI[] leaderBoardRows;
 
+    private void OnEnable()
+    {
+        LoadPlayerName();
+        LoadPlayerMoney();
+    }
     private void Start()
     {
         DOTween.Init();
@@ -73,10 +85,11 @@ public class GameManager : MonoBehaviour
         startButton.onClick.AddListener(OnClickStartButton);
         pauseButton.onClick.AddListener(OnClickPauseButton);
         continueButton.onClick.AddListener(OnClickPauseButton);
+        marketButton.onClick.AddListener(OnClickMarketButton);
         menuButton.onClick.AddListener(RestartScene);
         restartButton.onClick.AddListener(RestartScene);
         DOTween.SetTweensCapacity(500, 500);
-        LoadPlayerName();
+        moneyText.text = totalMoney.ToString();
         leaderBoardRows = leaderboardContent.GetComponentsInChildren<TextMeshProUGUI>();
     }
 
@@ -156,7 +169,6 @@ public class GameManager : MonoBehaviour
         SetActivePanel(GameEndUI.name);
         GameEndUI.GetComponent<RectTransform>().DOAnchorPosY(0, 0.75f).SetEase(Ease.OutBounce);
     }
-
     private string GetRowText(int position, string playerName)
     {
         return position.ToString() + "     " + playerName;
@@ -175,12 +187,25 @@ public class GameManager : MonoBehaviour
         leaderBoardRows[position].color = Color.red;
         youareText.text = "You're #" + (leaderBoardRows.Length - position).ToString();
         bestScoreText.text = "BEST SCORE \n" + character.GetScore().ToString();
+
+        totalMoney += (leaderBoardRows.Length - position) switch
+        {
+            1 => 100,
+            2 => 50,
+            3 => 25,
+            _ => 5,
+        };
+        SavePlayerMoney();
     }
     public void OnClickStartButton()
     {
         SetActivePanel(CountdownUI.name);
         StartCoroutine(CountDownDisplay());
         spawnManager.gameObject.SetActive(true);
+    }
+    public void OnClickMarketButton()
+    {
+        SetActivePanel(MarketUI.name);
     }
 
     public void OnClickPauseButton()
@@ -255,6 +280,7 @@ public class GameManager : MonoBehaviour
         scoreText.text = totalScore.ToString();
     }
 
+
     public void DisplayRemainingTime()
     {
         float min = remainingTime / 60;
@@ -276,12 +302,29 @@ public class GameManager : MonoBehaviour
         GameUI.SetActive(activePanel.Equals(GameUI.name));
         GameEndUI.SetActive(activePanel.Equals(GameEndUI.name));
         PauseUI.SetActive(activePanel.Equals(PauseUI.name));
+        MarketUI.SetActive(activePanel.Equals(MarketUI.name));
     }
 
     public void SavePlayerName()
     {
         string playerName = nameInput.text;
         PlayerPrefs.SetString(playerNameKey, playerName);
+
+    }
+
+    public void SavePlayerMoney()
+    {
+        PlayerPrefs.SetInt(playerMoneyKey, totalMoney);
+        moneyText.text = totalMoney.ToString();
+    }
+    public void LoadPlayerMoney()
+    {
+        if (PlayerPrefs.HasKey(playerMoneyKey))
+        {
+            int playerMoney = PlayerPrefs.GetInt(playerMoneyKey);
+            totalMoney = playerMoney;
+            moneyText.text = totalMoney.ToString();
+        }
     }
 
     private void LoadPlayerName()
@@ -291,5 +334,6 @@ public class GameManager : MonoBehaviour
             string playerName = PlayerPrefs.GetString(playerNameKey);
             nameInput.text = playerName;
         }
+
     }
 }

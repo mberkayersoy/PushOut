@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class SpawnManager : MonoBehaviour
 {
-    public Collider spawnArea; // The area where objects will be instantiated.
-
-
+    Collider[] spawnAreas; // The areas where objects will be instantiated.
+    public GameObject[] platformPrefabs;
+    public int levelCounter;
     public GameObject pickupObject;
     private List<GameObject> pickupPool = new List<GameObject>();
     public int initialPoolSize = 100;
@@ -17,10 +18,10 @@ public class SpawnManager : MonoBehaviour
 
     public float spawnIntervalTime = 0.2f; // PickUp Spawn Time
     public int enemyCount = 11; // Total Enemy Count
-
+    
     GameManager gameManager;
 
-    // Nicknames for NPC's
+    // Nicknames for AI's
     string[] aiNames = {
     "Miss Mustard",
     "Cotton",
@@ -41,16 +42,43 @@ public class SpawnManager : MonoBehaviour
     "Nightshade",
     "Ashen Thorn",
     "Raven Shadow",
-    "Frostbite"
+    "Frostbite",
+    "Ahmet Meric",
+    "Murat Yucel",
+    "Samet Meric"
     };
 
+    GameObject SetLevel()
+    {
+        levelCounter = PlayerPrefs.GetInt("levelCounter", 0);
+
+        if (levelCounter >= platformPrefabs.Length)
+        {
+            levelCounter = 0;
+        }
+
+        GameObject currentPlatform = Instantiate(platformPrefabs[levelCounter], Vector3.zero, Quaternion.identity, transform);
+        levelCounter++;
+        PlayerPrefs.SetInt("levelCounter", levelCounter);
+
+        return currentPlatform;
+    }
     void Start()
     {
-        spawnArea = GetComponent<Collider>();
+        spawnAreas = SetLevel().GetComponentsInChildren<Collider>();
         gameManager = GameManager.Instance;
+
+        SetPickupObjectMesh();
         InitializePool();
         StartCoroutine(SpawnPickups());
         SpawnCharacters();
+    }
+
+    private void SetPickupObjectMesh()
+    {
+        List<MarketItem> currentItems = MarketManager.Instance.GetItemsForGame();   
+        pickupObject.transform.GetChild(0).GetComponent<MeshFilter>().mesh =
+            currentItems[0].GetComponent<MarketItem>().itemPrefab.GetComponent<MeshFilter>().sharedMesh;
     }
 
     private void InitializePool()
@@ -66,7 +94,6 @@ public class SpawnManager : MonoBehaviour
     // Instantiate the object continuously at certain intervals.
     IEnumerator SpawnPickups()
     {
-
         yield return new WaitForSeconds(spawnIntervalTime);
         // Get an inactive pick-up object from the pool using it.
         GameObject pickup = GetInactivePickup();
@@ -103,10 +130,12 @@ public class SpawnManager : MonoBehaviour
         List<Vector3> spawnPoints = GetSpawnPoints(enemyCount + 1, 15f);
 
         GameObject player = Instantiate(playerPrefab, spawnPoints[0], Quaternion.identity);
+        Destroy(playerPrefab);
         gameManager.livingCharacters.Add(player.GetComponent<CharacterFeatures>());
-        player.GetComponent<CharacterFeatures>().SetName(gameManager.nameInput.text);
-        gameManager.SavePlayerName();
-        Camera.main.GetComponent<CameraFollow>().target = player.transform;
+        SetPlayer(player.GetComponent<CharacterFeatures>());
+        //player.GetComponent<CharacterFeatures>().SetName(gameManager.nameInput.text);
+        //gameManager.SavePlayerName();
+        //Camera.main.GetComponent<CameraFollow>().target = player.transform;
 
         for (int i = 0; i < enemyCount; i++)
         {
@@ -116,6 +145,13 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
+    public void SetPlayer(CharacterFeatures player)
+    {
+        player.GetComponent<CharacterFeatures>().SetName(gameManager.nameInput.text);
+        player.GetComponent<Rigidbody>().isKinematic = false;
+        gameManager.SavePlayerName();
+        Camera.main.GetComponent<CameraFollow>().target = player.transform;
+    }
    
 
     //When the game starts, creates a Vector3 List with a minDistance
@@ -124,14 +160,24 @@ public class SpawnManager : MonoBehaviour
     {
         List<Vector3> spawnPoints = new List<Vector3>();
 
-        Vector3 center = spawnArea.bounds.center;
-        Vector3 size = spawnArea.bounds.size;
+        //Collider selectedArea = spawnAreas[Random.Range(0, spawnAreas.Length)];
 
-        float halfWidth = size.x / 2f;
-        float halfDepth = size.z / 2f;
+        //Vector3 center = spawnArea.bounds.center;
+        //Vector3 size = spawnArea.bounds.size;
+
+        //float halfWidth = size.x / 2f;
+        //float halfDepth = size.z / 2f;
 
         while (spawnPoints.Count < pointCount)
         {
+            Collider selectedArea = spawnAreas[Random.Range(0, spawnAreas.Length)];
+
+            Vector3 center = selectedArea.bounds.center;
+            Vector3 size = selectedArea.bounds.size;
+
+            float halfWidth = size.x / 2f;
+            float halfDepth = size.z / 2f;
+
             Vector3 randomPoint = center + new Vector3(Random.Range(-halfWidth, halfWidth), 
                 0f, Random.Range(-halfDepth, halfDepth));
 
@@ -148,7 +194,7 @@ public class SpawnManager : MonoBehaviour
 
             if (validPoint)
             {
-                spawnPoints.Add(randomPoint);
+                spawnPoints.Add(randomPoint + Vector3.up);
             }
         }
 
@@ -160,9 +206,12 @@ public class SpawnManager : MonoBehaviour
     {
         Vector3 randomPoint = Vector3.zero;
 
-        if (spawnArea != null)
+        Collider selectedArea = spawnAreas[Random.Range(0, spawnAreas.Length)];
+
+        if (selectedArea != null)
         {
-            Bounds bounds = spawnArea.bounds;
+            //Bounds bounds = spawnArea.bounds;
+            Bounds bounds = selectedArea.bounds;
 
             randomPoint = new Vector3(
                 Random.Range(bounds.min.x, bounds.max.x),
@@ -177,6 +226,4 @@ public class SpawnManager : MonoBehaviour
 
         return randomPoint + new Vector3(0, 10, 0);
     }
-
-
 }

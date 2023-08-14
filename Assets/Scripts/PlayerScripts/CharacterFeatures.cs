@@ -10,6 +10,7 @@ public abstract class CharacterFeatures : MonoBehaviour
     protected float totalScore;
     protected float scale; // Scale reference of character
     protected float scaleMultiplier = 0.0008f; // How much does the score variable affect the scale variable.
+    private int money;
 
     //MOVEMENT VARIABLES
     protected string characterName;
@@ -18,17 +19,22 @@ public abstract class CharacterFeatures : MonoBehaviour
     public Transform headTransform;
 
     // GROUND VARIABLES
-    protected float groundRadius = 2f;
+    protected float groundRadius = 0.8f;
     public LayerMask groundLayers;
     bool isGrounded;
-    protected Vector3 groundOffset;
+    public Vector3 groundOffset;
+    bool edgeCheck;
+
 
     // Who was the last one I got pushed by?
     protected CharacterFeatures lastPushedPlayer;
 
+    public int Money { get => money; set => money = value; }
+
     public void FixedUpdate()
     {
-        GroundCheck();   
+        GroundCheck();
+        //JitterCheck();
     }
     public abstract void SetScore(float addScore);
     public float GetScore()
@@ -67,7 +73,7 @@ public abstract class CharacterFeatures : MonoBehaviour
     {
         float scaleIncrement = addScale * scaleMultiplier;
         scale += scaleIncrement;
-
+        groundRadius = scale / 5;
         // Create scale animation using DOTween
         GetComponent<Rigidbody>().mass += addScale * 0.008f;
         transform.DOScale(scale, 0.5f);
@@ -77,6 +83,32 @@ public abstract class CharacterFeatures : MonoBehaviour
         gameObject.GetComponent<Animator>().SetBool("isGrounded", isGrounded);
         return isGrounded = Physics.CheckSphere(transform.position + groundOffset, groundRadius, groundLayers
             , QueryTriggerInteraction.Ignore);
+    }
+
+    public void JitterCheck()
+    {
+        if (!isGrounded)
+        {
+            edgeCheck = Physics.CheckSphere(transform.position + groundOffset, groundRadius * 4, groundLayers
+                , QueryTriggerInteraction.Ignore);
+            if (edgeCheck)
+            {
+                Debug.Log("JýtterCheck");
+                GetComponent<Rigidbody>().AddForce(Vector3.down * 3f, ForceMode.VelocityChange);
+                GetComponent<Collider>().material.frictionCombine = PhysicMaterialCombine.Minimum;
+                Debug.Log("frictionCombine:" + GetComponent<Collider>().material.frictionCombine);
+
+            }
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawSphere(transform.position + groundOffset, groundRadius);
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(transform.position + groundOffset, groundRadius * 4);
     }
 
 }
