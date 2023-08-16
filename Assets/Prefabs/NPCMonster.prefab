@@ -2535,9 +2535,9 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7660060204833023723}
   serializedVersion: 2
-  m_Mass: 5
+  m_Mass: 8
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -2572,7 +2572,7 @@ MonoBehaviour:
   moveSpeed: 12
   rotationSpeed: 360
   detectionRange: 45
-  pushForce: 18
+  pushForce: 15
   isPushed: 0
   currentTarget: {fileID: 0}
   animator: {fileID: 0}

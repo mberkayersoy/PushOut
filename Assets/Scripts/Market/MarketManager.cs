@@ -109,7 +109,7 @@ public class MarketManager : MonoBehaviour
         if (gameManager.totalMoney >= unlockCosts[currentShopIndex])
         {
             MarketItem[] marketItems = shopsContents[currentShopIndex].GetComponentsInChildren<MarketItem>();
-            GetRandomItem(marketItems).ActivateItem();
+            GetRandomItem(marketItems).BuyItem();
             gameManager.totalMoney -= unlockCosts[currentShopIndex];
             UpdateMoneyText();
             SetCurrentShopCost(currentShopIndex);
@@ -133,7 +133,7 @@ public class MarketManager : MonoBehaviour
             {
                 if (item == marketItem)
                 {
-                    item.ActivateItem();
+                    item.BuyItem();
                     WearItem(item);
                 }
                 else

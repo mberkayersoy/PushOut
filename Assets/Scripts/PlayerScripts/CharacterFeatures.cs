@@ -34,7 +34,7 @@ public abstract class CharacterFeatures : MonoBehaviour
     public void FixedUpdate()
     {
         GroundCheck();
-        //JitterCheck();
+        JitterCheck();
     }
     public abstract void SetScore(float addScore);
     public float GetScore()
@@ -89,14 +89,12 @@ public abstract class CharacterFeatures : MonoBehaviour
     {
         if (!isGrounded)
         {
-            edgeCheck = Physics.CheckSphere(transform.position + groundOffset, groundRadius * 4, groundLayers
+            edgeCheck = Physics.CheckSphere(transform.position + groundOffset, groundRadius * 2.5f, groundLayers
                 , QueryTriggerInteraction.Ignore);
             if (edgeCheck)
             {
-                Debug.Log("JýtterCheck");
-                GetComponent<Rigidbody>().AddForce(Vector3.down * 3f, ForceMode.VelocityChange);
-                GetComponent<Collider>().material.frictionCombine = PhysicMaterialCombine.Minimum;
-                Debug.Log("frictionCombine:" + GetComponent<Collider>().material.frictionCombine);
+                Debug.Log("JitterCheck");
+                //GetComponent<Rigidbody>().AddForce(Vector3.down * 30f, ForceMode.VelocityChange);
 
             }
         }
@@ -108,7 +106,7 @@ public abstract class CharacterFeatures : MonoBehaviour
         Gizmos.DrawSphere(transform.position + groundOffset, groundRadius);
 
         Gizmos.color = Color.red;
-        Gizmos.DrawSphere(transform.position + groundOffset, groundRadius * 4);
+        Gizmos.DrawSphere(transform.position + groundOffset, groundRadius * 2.5f);
     }
 
 }

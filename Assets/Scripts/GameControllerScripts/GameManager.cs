@@ -49,6 +49,8 @@ public class GameManager : MonoBehaviour
     public Button pauseButton;
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI remainingTimeText;
+    public TextMeshProUGUI livingCharacterText;
+    public float livingCharacterCount;
     public SpawnManager spawnManager;
     public float gameTime = 75f;
     float remainingTime;
@@ -115,6 +117,11 @@ public class GameManager : MonoBehaviour
         livingCharacters.Remove(character);
     }
 
+    public void UpdateLivingCharacters()
+    {
+        livingCharacterCount--;
+        livingCharacterText.text = livingCharacterCount.ToString();
+    }
     // Show the leader board when the game is over.
     public void DisplayLeaderBoard()
     {

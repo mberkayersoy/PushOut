@@ -311,6 +311,18 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -512,8 +524,8 @@ TextureImporter:
         width: 410
         height: 129
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 70, y: 0, z: 70, w: 0}
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -533,8 +545,8 @@ TextureImporter:
         width: 396
         height: 129
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 50, y: 50, z: 50, w: 50}
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -554,8 +566,8 @@ TextureImporter:
         width: 397
         height: 129
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 50, y: 50, z: 50, w: 50}
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -575,8 +587,8 @@ TextureImporter:
         width: 256
         height: 61
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 30, y: 20, z: 30, w: 20}
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -596,8 +608,8 @@ TextureImporter:
         width: 256
         height: 62
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 30, y: 20, z: 30, w: 20}
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -680,8 +692,8 @@ TextureImporter:
         width: 396
         height: 139
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 50, z: 0, w: 50}
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -701,8 +713,8 @@ TextureImporter:
         width: 397
         height: 139
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 50, z: 0, w: 50}
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -717,13 +729,13 @@ TextureImporter:
       name: GUI_19
       rect:
         serializedVersion: 2
-        x: 2599
-        y: 1537
-        width: 312
-        height: 53
+        x: 2603
+        y: 1542
+        width: 304
+        height: 42
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 40, y: 0, z: 40, w: 0}
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -806,8 +818,8 @@ TextureImporter:
         width: 312
         height: 51
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 40, y: 0, z: 40, w: 0}
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -911,8 +923,8 @@ TextureImporter:
         width: 616
         height: 798
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 70, y: 70, z: 70, w: 70}
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -1075,11 +1087,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 569
-        y: 843
-        width: 114
-        height: 100
+        y: 911
+        width: 33
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1221,12 +1233,12 @@ TextureImporter:
       name: GUI_48
       rect:
         serializedVersion: 2
-        x: 389
+        x: 390
         y: 530
-        width: 124
-        height: 102
+        width: 68
+        height: 96
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1268,8 +1280,8 @@ TextureImporter:
         width: 270
         height: 270
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 80, y: 80, z: 80, w: 80}
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -1289,8 +1301,8 @@ TextureImporter:
         width: 269
         height: 270
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 80, y: 80, z: 80, w: 80}
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -1604,8 +1616,8 @@ TextureImporter:
         width: 673
         height: 165
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 200, y: 0, z: 200, w: 0}
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -1616,10 +1628,157 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: GUI_37
+      rect:
+        serializedVersion: 2
+        x: 603
+        y: 912
+        width: 79
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60364274b2e4fc242859e259752b4ccd
+      internalID: 1551921936
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GUI_38
+      rect:
+        serializedVersion: 2
+        x: 569
+        y: 876
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a04989a7595a9944bb42917889a78126
+      internalID: 1798300488
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GUI_39
+      rect:
+        serializedVersion: 2
+        x: 603
+        y: 879
+        width: 79
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 199be62688c41784fb0e23331dabb2c0
+      internalID: -1979951033
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GUI_40
+      rect:
+        serializedVersion: 2
+        x: 569
+        y: 842
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a9b78ca8e084fc4d8910a7144943fa0
+      internalID: 1148561496
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GUI_41
+      rect:
+        serializedVersion: 2
+        x: 603
+        y: 845
+        width: 79
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 092c4eb9e3da7e74ab1a34fbeb0c6479
+      internalID: 541804418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GUI_49
+      rect:
+        serializedVersion: 2
+        x: 459
+        y: 550
+        width: 29
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 20c34f0c33973024db1f08e234073d17
+      internalID: 2068507211
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GUI_50
+      rect:
+        serializedVersion: 2
+        x: 476
+        y: 535
+        width: 37
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a5084b939f7afe49b5b60318fa23c18
+      internalID: 1423691694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 3bcfe8befcf02f54fa7cb65e327538f5
     internalID: 0
     vertices: []
     indices: 
@@ -1658,7 +1817,12 @@ TextureImporter:
       GUI_34: 21300068
       GUI_35: 21300070
       GUI_36: 21300072
+      GUI_37: 1551921936
+      GUI_38: 1798300488
+      GUI_39: -1979951033
       GUI_4: 21300008
+      GUI_40: 1148561496
+      GUI_41: 541804418
       GUI_42: 21300074
       GUI_43: 21300076
       GUI_44: 21300078
@@ -1666,7 +1830,9 @@ TextureImporter:
       GUI_46: 21300082
       GUI_47: 21300084
       GUI_48: 21300086
+      GUI_49: 2068507211
       GUI_5: 21300010
+      GUI_50: 1423691694
       GUI_51: 21300088
       GUI_52: 21300090
       GUI_53: 21300092

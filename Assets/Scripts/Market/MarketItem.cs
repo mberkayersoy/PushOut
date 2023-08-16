@@ -11,6 +11,7 @@ public class MarketItem : MonoBehaviour
     [SerializeField] private bool isBought;
     [SerializeField] private bool isActive;
     [SerializeField] public ItemType ItemType;
+    [SerializeField] Image lockImage;
 
     public bool IsBought { get => isBought; set => isBought = value; }
     public bool IsActive { get => isActive; set => isActive = value; }
@@ -20,24 +21,26 @@ public class MarketItem : MonoBehaviour
     {
         button = GetComponent<Button>();
         GetComponent<Image>().sprite = itemSprite;
-
         button.onClick.AddListener(OnClickItem);
 
         if (isBought)
         {
             button.interactable = true;
+            lockImage.enabled = false;
         }
         else
         {
             button.interactable = false;
+            lockImage.enabled = true;
         }
 
     }
 
-    public void ActivateItem()
+    public void BuyItem()
     {
         IsBought = true;
         button.interactable = true;
+        lockImage.enabled = false;
         SaveData();
     }
 
@@ -51,6 +54,7 @@ public class MarketItem : MonoBehaviour
     {
         // To do: wear the item.
         IsActive = true;
+        lockImage.enabled = true;
         MarketManager.Instance.OnClickWearingItem(this, ItemType);
         SaveData();
     }
