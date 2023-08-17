@@ -43,22 +43,6 @@ public class StopObject : MonoBehaviour
 
         }
     }
-    //void MoveObjectYaxis()   
-    //{
-    //    if (gameObject.transform != null)
-    //    {
-    //        transform.parent.DOMoveY(transform.parent.position.y + 1f, 1f)
-    //        .SetEase(Ease.InOutSine)
-    //        .SetLoops(-1, LoopType.Yoyo);
-    //    }
-    //}
-
-    // This method execute when gameobject will destroy. Prevent the dotween bugs/errors.
-    //private void OnDestroy()
-    //{
-    //    DOTween.Kill(rotationID);
-    //}
-
     private void OnEnable()
     {
         DOTween.Kill(rotationID);

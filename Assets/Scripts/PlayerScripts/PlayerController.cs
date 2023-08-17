@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     public Animator animator;
     public GameObject hitVFX;
     PlayerFeatures characterFeatures;
+    GameManager gameManager;
 
     [SerializeField] private float moveSpeed = 15f;
     [SerializeField] private float rotationSpeed = 360f;
@@ -20,6 +21,7 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
+        gameManager = GameManager.Instance;
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
         rb.AddForce(-Vector3.up * 20, ForceMode.Impulse);
@@ -31,7 +33,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (!GameManager.Instance.isGameActive) return;
+        if (!gameManager.isGameActive) return;
 
         if (isPushed == true)
         {
@@ -74,7 +76,7 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (GameManager.Instance.isGameActive == true )
+        if (gameManager.isGameActive)
         {
             if (!characterFeatures.GroundCheck())
             {
@@ -103,42 +105,17 @@ public class PlayerController : MonoBehaviour
         {
             Vector3 pushDirection = -collision.contacts[0].normal.normalized;
             pushDirection.y = 0;
-            //StartCoroutine(Vibrate()); // Start Vibration
             characterFeatures.SetLastPushedPlayer(enemy);
             PushCharacter(enemy.GetComponent<Rigidbody>(), pushDirection);
             isPushed = true;
             animator.SetBool("isPushed", true);
-            GameObject vfx = Instantiate(hitVFX, collision.contacts[0].point, Quaternion.identity);
-            //Destroy(vfx, 1f);
+            Instantiate(hitVFX, collision.contacts[0].point, Quaternion.identity);
         }
     }
     private void PushCharacter(Rigidbody pushedRigidbody, Vector3 direction)
     {
         pushedRigidbody.AddForce(direction * gameObject.GetComponent<Rigidbody>().mass * pushForce, ForceMode.Impulse);
 
-    }
-
-    private IEnumerator Vibrate()
-    {
-        // vibration time
-        long milliseconds = 100;
-
-        // Start vibration
-        if (SystemInfo.supportsVibration)
-        {   
-            Debug.Log("vibrating");
-            Handheld.Vibrate();
-        }
-
-        // wait
-        yield return new WaitForSecondsRealtime(milliseconds / 1000f);
-
-        // stop vibration
-        if (SystemInfo.supportsVibration)
-        {
-            Debug.Log("stop");
-            Handheld.StopActivityIndicator();
-        }
     }
 
 }

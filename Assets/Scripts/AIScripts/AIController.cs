@@ -8,6 +8,7 @@ public class AIController : MonoBehaviour
     [SerializeField] private float pushForce = 20f;
     [SerializeField] private bool isPushed;
 
+    GameManager gameManager;
     EnemyFeatures characterFeatures;
     public Transform currentTarget;
     public Animator animator;
@@ -15,6 +16,7 @@ public class AIController : MonoBehaviour
 
     private void Start()
     {
+        gameManager = GameManager.Instance;
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true; // Freeze rigidnody rotation.
@@ -26,7 +28,7 @@ public class AIController : MonoBehaviour
 
     private void Update()
     {
-        if (!GameManager.Instance.isGameActive) return;
+        if (!gameManager.isGameActive) return;
 
         FindBestTarget();
 
@@ -50,7 +52,7 @@ public class AIController : MonoBehaviour
     void MoveToTarget()
     {
 
-        if (GameManager.Instance.isGameActive == true)
+        if (gameManager.isGameActive == true)
         {
             if (currentTarget != null)
             {
@@ -127,12 +129,5 @@ public class AIController : MonoBehaviour
     private void PushCharacter(Rigidbody pushedRigidbody, Vector3 direction)
     {
         pushedRigidbody.AddForce(direction * gameObject.GetComponent<Rigidbody>().mass * pushForce, ForceMode.Impulse);
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = new Color(0f, 1f, 0f, 0.5f);
-        Gizmos.DrawWireSphere(transform.position, detectionRange);
-        if (currentTarget != null) Gizmos.DrawLine(transform.position, currentTarget.position);
     }
 }

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using System.Linq;
 
 public enum ItemType
 {
@@ -30,7 +29,6 @@ public class MarketManager : MonoBehaviour
     [SerializeField] private GameObject[] shops;
     [SerializeField] private Transform[] shopsContents;
     public int[] unlockCosts;
-    [SerializeField] private Button unlockWithAdButton;
     [SerializeField] private Button backButton;
     [SerializeField] private Button unlockRandomButton;
     [SerializeField] public Dictionary<int, MarketItem[]> shopsItemsDic = new Dictionary<int, MarketItem[]>();
@@ -45,7 +43,6 @@ public class MarketManager : MonoBehaviour
         gameManager = GameManager.Instance;
         UpdateMoneyText();
         unlockRandomButton.onClick.AddListener(OnClickUnlockRandomButton);
-        unlockWithAdButton.onClick.AddListener(OnClickUnclockWithAdButton);
         backButton.onClick.AddListener(OnClickBackButton);
 
 
@@ -93,16 +90,10 @@ public class MarketManager : MonoBehaviour
         }
     }
 
-
-    public void OnClickUnclockWithAdButton()
-    {
-        // To do: Watch advert and unlock item.
-    }
-    
     public void UpdateMoneyText()
     {
         totalMoneyText.text = gameManager.totalMoney.ToString();
-        Debug.Log("totalMoney: " + gameManager.totalMoney.ToString());
+        //Debug.Log("totalMoney: " + gameManager.totalMoney.ToString());
     }
     public void OnClickUnlockRandomButton()
     {
@@ -121,7 +112,7 @@ public class MarketManager : MonoBehaviour
 
     public void SetCurrentShopCost(int currentShopIndex)
     {
-        unlockCosts[currentShopIndex] += 2;
+        unlockCosts[currentShopIndex] += 200;
         SaveData();
     }
 

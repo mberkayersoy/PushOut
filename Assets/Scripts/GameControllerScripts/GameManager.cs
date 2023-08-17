@@ -72,6 +72,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI youareText;
     public TextMeshProUGUI bestScoreText;
     public Button restartButton;
+    public Button advertButton;
     public TextMeshProUGUI[] leaderBoardRows;
 
     private void OnEnable()
@@ -90,6 +91,7 @@ public class GameManager : MonoBehaviour
         marketButton.onClick.AddListener(OnClickMarketButton);
         menuButton.onClick.AddListener(RestartScene);
         restartButton.onClick.AddListener(RestartScene);
+        advertButton.onClick.AddListener(OnClickAdvertButton);
         DOTween.SetTweensCapacity(500, 500);
         moneyText.text = totalMoney.ToString();
         leaderBoardRows = leaderboardContent.GetComponentsInChildren<TextMeshProUGUI>();
@@ -311,6 +313,11 @@ public class GameManager : MonoBehaviour
         PauseUI.SetActive(activePanel.Equals(PauseUI.name));
         MarketUI.SetActive(activePanel.Equals(MarketUI.name));
     }
+    public void SetPlayerMoney(int money)
+    {
+        totalMoney += money;
+        SavePlayerMoney();
+    }
 
     public void SavePlayerName()
     {
@@ -341,6 +348,10 @@ public class GameManager : MonoBehaviour
             string playerName = PlayerPrefs.GetString(playerNameKey);
             nameInput.text = playerName;
         }
+    }
 
+    public void OnClickAdvertButton()
+    {
+        AdManager.Instance.LoadRewardedAd();
     }
 }

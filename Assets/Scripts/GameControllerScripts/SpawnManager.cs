@@ -15,6 +15,7 @@ public class SpawnManager : MonoBehaviour
 
     public GameObject playerPrefab;
     public GameObject npcPrefab;
+    public CameraFollow mainCamera;
 
     public float spawnIntervalTime = 0.2f; // PickUp Spawn Time
     public int enemyCount = 11; // Total Enemy Count
@@ -121,6 +122,7 @@ public class SpawnManager : MonoBehaviour
         GameObject newPickup = Instantiate(pickupObject, transform.position, Quaternion.identity);
         newPickup.SetActive(false);
         pickupPool.Add(newPickup);
+
         return newPickup;
     }
 
@@ -150,7 +152,7 @@ public class SpawnManager : MonoBehaviour
         player.GetComponent<CharacterFeatures>().SetName(gameManager.nameInput.text);
         player.GetComponent<Rigidbody>().isKinematic = false;
         gameManager.SavePlayerName();
-        Camera.main.GetComponent<CameraFollow>().target = player.transform;
+       mainCamera.target = player.transform;
     }
    
 

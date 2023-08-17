@@ -93,20 +93,20 @@ public abstract class CharacterFeatures : MonoBehaviour
                 , QueryTriggerInteraction.Ignore);
             if (edgeCheck)
             {
-                Debug.Log("JitterCheck");
+                //Debug.Log("JitterCheck");
                 //GetComponent<Rigidbody>().AddForce(Vector3.down * 30f, ForceMode.VelocityChange);
 
             }
         }
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.green;
-        Gizmos.DrawSphere(transform.position + groundOffset, groundRadius);
+    //private void OnDrawGizmos()
+    //{
+    //    Gizmos.color = Color.green;
+    //    Gizmos.DrawSphere(transform.position + groundOffset, groundRadius);
 
-        Gizmos.color = Color.red;
-        Gizmos.DrawSphere(transform.position + groundOffset, groundRadius * 2.5f);
-    }
+    //    Gizmos.color = Color.red;
+    //    Gizmos.DrawSphere(transform.position + groundOffset, groundRadius * 2.5f);
+    //}
 
 }
