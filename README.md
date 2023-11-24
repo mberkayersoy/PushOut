@@ -8,7 +8,7 @@ This game is a drag to play game. Determine your name before starting the game. 
 
 ## Screenshots
 
-![image_009_0042](https://github.com/mberkayersoy/PushOut/assets/76611569/bcd5838e-22ca-4dfe-84a7-3468be1364b1){:width="100px" height="100px"}
+![image_009_0042](https://github.com/mberkayersoy/PushOut/assets/76611569/bcd5838e-22ca-4dfe-84a7-3468be1364b1)
 ![image_010_0175](https://github.com/mberkayersoy/PushOut/assets/76611569/dde04361-8588-4e5c-9afc-fedc144e7a01)
 ![image_016_0000](https://github.com/mberkayersoy/PushOut/assets/76611569/7d8e1481-fc66-4de2-87f1-8553916113b6)
 ![image_010_0175](https://github.com/mberkayersoy/PushOut/assets/76611569/7730c85e-0e27-43c1-98f0-e4987aa5f689)
